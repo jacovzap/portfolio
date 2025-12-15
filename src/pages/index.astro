@@ -1,0 +1,20 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Hero } from "../components/Hero";
+import { TechStack } from "../components/TechStack";
+import { FeaturedProjects } from "../components/FeaturedProjects";
+import { Experience } from "../components/Experience";
+import { Contact } from "../components/Contact";
+---
+
+<Layout
+  title="Jacobo Covarrubias Zapata - Senior Fullstack Engineer & Cloud Architect"
+>
+  <main>
+    <Hero client:load />
+    <TechStack client:visible />
+    <FeaturedProjects client:visible />
+    <Experience client:visible />
+    <Contact client:visible />
+  </main>
+</Layout>
