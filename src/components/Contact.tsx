@@ -6,12 +6,12 @@ export const Contact: React.FC = () => {
   return (
     <section
       id="contact"
-      className="relative flex min-h-[600px] w-full flex-col items-center justify-center overflow-hidden bg-black py-32 antialiased"
+      className="relative flex min-h-[00px] w-full flex-col items-center justify-center overflow-hidden bg-black pt-12 md:pt-32 antialiased"
     >
       <BackgroundBeams className="opacity-40" />
 
       <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-        <h2 className="mb-6 bg-gradient-to-b from-neutral-100 to-neutral-400 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl md:text-6xl leading-tight pb-2">
+        <h2 className="mb-12 md:mb-16 bg-gradient-to-b from-neutral-100 to-neutral-400 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl md:text-6xl leading-tight pb-2">
           Let's Build Something Great
         </h2>
 
@@ -77,7 +77,7 @@ export const Contact: React.FC = () => {
           </a>
         </div>
 
-        <div className="mt-16 border-t border-zinc-800 pt-8">
+        <div className="mt-12 md:mt-16 border-t border-zinc-800 pt-6 md:pt-8 pb-4">
           <p className="text-sm text-zinc-500">
             © 2025 Jacobo Covarrubias Zapata. Built with Astro, React, and
             Tailwind CSS.

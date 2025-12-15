@@ -74,9 +74,9 @@ const experiences = [
 
 export const Experience: React.FC = () => {
   return (
-    <section className="relative w-full bg-zinc-950 py-32 antialiased">
+    <section className="relative w-full bg-zinc-950 py-12 md:py-32 antialiased">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-20 text-center">
+        <div className="mb-12 md:mb-16 text-center">
           <h2 className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
             Professional Journey
           </h2>
@@ -86,10 +86,10 @@ export const Experience: React.FC = () => {
           </p>
         </div>
 
-        <TracingBeam className="px-6">
+        <TracingBeam className="px-2 md:px-6">
           <div className="max-w-2xl mx-auto antialiased pt-4 relative">
             {experiences.map((exp, index) => (
-              <div key={index} className="mb-16">
+              <div key={index} className="mb-10 md:mb-12 pl-6 md:pl-0">
                 <div className="mb-4">
                   <p className="text-xs font-medium text-blue-400 uppercase tracking-wider mb-2">
                     {exp.period}
@@ -105,7 +105,7 @@ export const Experience: React.FC = () => {
                   </div>
                 </div>
 
-                <ul className="space-y-2 mb-4">
+                <ul className="space-y-1 md:space-y-2 mb-4">
                   {exp.achievements.map((achievement, i) => (
                     <li
                       key={i}

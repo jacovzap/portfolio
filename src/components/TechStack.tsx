@@ -56,9 +56,9 @@ const techStack = [
 
 export const TechStack: React.FC = () => {
   return (
-    <section className="relative flex w-full flex-col items-center justify-center overflow-hidden bg-zinc-950 py-32 antialiased">
+    <section className="relative flex w-full flex-col items-center justify-center overflow-hidden bg-zinc-950 py-12 md:py-32 antialiased">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-12 text-center">
+        <div className="mb-12 md:mb-16 text-center">
           <h2 className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
             Trusted Tech Stack
           </h2>

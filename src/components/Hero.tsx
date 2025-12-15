@@ -14,7 +14,7 @@ export const Hero: React.FC<HeroProps> = ({
   description = "Building scalable cloud-native applications with TypeScript, Node.js, NestJS, AWS, and React. Specialized in microservices architecture and high-performance backend systems.",
 }) => {
   return (
-    <div className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-black/[0.96] antialiased">
+    <section className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-black antialiased py-12 md:py-0">
       <Spotlight
         className="-top-40 left-0 md:-top-20 md:left-60"
         fill="white"
@@ -113,7 +113,7 @@ export const Hero: React.FC<HeroProps> = ({
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8 + index * 0.1, duration: 0.4 }}
-                className="group relative inline-flex items-center rounded-full border border-zinc-800 bg-zinc-900/50 px-4 py-2 text-sm font-medium text-zinc-300 backdrop-blur-sm transition-all duration-300 hover:text-white"
+                className="group relative inline-flex items-center rounded-full border border-zinc-800 bg-zinc-900/50 px-4 py-2 text-sm font-medium text-zinc-300 backdrop-blur-sm transition-all duration-300 hover:text-white select-none"
                 style={{ willChange: "opacity, transform" }}
               >
                 <span className="relative z-10">{tech}</span>
@@ -130,7 +130,7 @@ export const Hero: React.FC<HeroProps> = ({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.8 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2"
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 hidden md:block"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}
@@ -153,6 +153,6 @@ export const Hero: React.FC<HeroProps> = ({
           </svg>
         </motion.div>
       </motion.div>
-    </div>
+    </section>
   );
 };

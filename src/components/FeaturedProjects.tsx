@@ -40,7 +40,7 @@ const projects = [
     className: "md:col-span-1",
   },
   {
-    title: "High-Performance Niche Media Streaming Platform",
+    title: "High-Performance Media Streaming",
     description:
       "Optimized Next.js streaming platform for Latin American market with SSR/SSG architecture. Reduced bandwidth by 40% while maintaining UX quality and handling 50k+ monthly active users.",
     header: (
@@ -65,10 +65,10 @@ export const FeaturedProjects: React.FC = () => {
   return (
     <section
       id="projects"
-      className="relative flex w-full flex-col items-center justify-center overflow-hidden bg-black py-32 antialiased"
+      className="relative flex w-full flex-col items-center justify-center overflow-hidden bg-black py-12 md:py-32 antialiased"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-16 text-center">
+        <div className="mb-12 md:mb-16 text-center">
           <h2 className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
             Featured Case Studies
           </h2>
