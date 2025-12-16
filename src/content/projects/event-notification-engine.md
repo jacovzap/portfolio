@@ -16,7 +16,7 @@ role: "Lead Backend Architect"
 
 architecture:
   description: |
-    I architected a deferred execution system leveraging NestJS as the orchestration layer, integrated with Amazon SNS for the delivery mechanism and Redis (via Bull) for distributed queue management.
+    The system was architected around a deferred execution model, leveraging NestJS as the orchestration layer, integrated with Amazon SNS for the delivery mechanism and Redis (via Bull) for distributed queue management.
 
     The core innovation was an **Optimized Batch Injection** strategy: instead of continuous polling, a daily CronJob executes during the server's lowest traffic window, querying all events scheduled for the upcoming 24 hours. For each event, the system calculates the precise trigger time (Event Time - 10 minutes) and injects these jobs into a Redis Queue with specific delays.
 
@@ -37,7 +37,7 @@ architecture:
 challenges:
   - title: "Concurrent Cron Execution on Kubernetes Pods"
     problem: "With horizontal scaling across multiple K8s pods, the CronJob occasionally triggered on multiple instances simultaneously, resulting in duplicate notifications—a critical UX failure that eroded user trust."
-    solution: "Implemented a cryptographic hashing mechanism to ensure idempotency. We generate a unique hash based on event metadata and timestamp. Before enqueuing a job, the system checks Redis for this specific hash key. If the key exists, the duplicate job is discarded silently."
+    solution: "A cryptographic hashing mechanism ensures idempotency, generating unique hashes based on event metadata and timestamp. Before enqueuing a job, the system checks Redis for this specific hash key. If the key exists, the duplicate job is discarded silently."
     impact: "Achieved 100% job uniqueness guarantee with zero duplicate sends. The hashing approach also provided operational flexibility: if an event time changed, we could update the job in Redis directly, and the hash check would prevent stale duplicates."
 
   - title: "Precision Timing at Scale"
@@ -46,7 +46,7 @@ challenges:
     impact: "Maintained sub-minute precision for 99.9% of notifications, meeting strict SLA requirements for time-sensitive user alerts."
 
 metrics:
-  - value: "30k+"
+  - value: "30K+"
     label: "Daily Events Processed"
   - value: "99.9%"
     label: "Delivery Reliability"

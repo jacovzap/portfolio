@@ -11,7 +11,7 @@ interface HeroProps {
 export const Hero: React.FC<HeroProps> = ({
   name = "Jacobo Covarrubias",
   title = "Fullstack Cloud Engineer",
-  description = "Building scalable cloud-native applications with TypeScript, Node.js, NestJS, AWS, and React. Specialized in microservices architecture and high-performance backend systems.",
+  description = "Architecting scalable cloud-native platforms with TypeScript, Node.js, NestJS, AWS, and React. Focused on event-driven systems and high-performance backend architecture.",
 }) => {
   return (
     <section className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-black antialiased py-12 md:py-0">
@@ -77,7 +77,7 @@ export const Hero: React.FC<HeroProps> = ({
               }}
               className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 px-8 font-medium text-white shadow-lg shadow-blue-500/30 ring-2 ring-blue-500/20 transition-all duration-300 hover:shadow-blue-500/50 hover:ring-blue-500/40"
             >
-              <span className="relative z-10">View Projects</span>
+              <span className="relative z-10">View Case Studies</span>
               <div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-400 to-blue-600 opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-70"></div>
             </a>
             <a

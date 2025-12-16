@@ -16,11 +16,11 @@ role: "Lead Full-Stack Developer & System Architect"
 
 architecture:
   description: |
-    I architected a real-time financial module integrated into the client's existing ERP, utilizing NestJS for the backend and React for the frontend interfaces at both HQ and branch locations.
+    The solution centered on a real-time financial module integrated into the client's existing ERP, with NestJS powering the backend and React driving the frontend interfaces at both HQ and branch locations.
 
     The core workflow begins with the Finance Manager at HQ generating a "Deposit Order" which is instantly pushed to the specific Branch Manager's dashboard via **WebSockets**. This eliminated email delays and ensured branches acted on the most current financial directives in real-time.
 
-    Branch managers digitize their cash reports within the system, and to validate expenses, the platform requires digital proof. I implemented a secure document handling pipeline where receipts, invoices, and bank vouchers are scanned and uploaded to **AWS S3**. To maintain security, the frontend requests Presigned URLs from the backend, allowing temporary, secure access without exposing long-term credentials.
+    Branch managers digitize their cash reports within the system, and to validate expenses, the platform requires digital proof. A secure document handling pipeline enables receipts, invoices, and bank vouchers to be scanned and uploaded to **AWS S3**. To maintain security, the frontend requests Presigned URLs from the backend, allowing temporary, secure access without exposing long-term credentials.
 
     **Architectural Decision**: The bidirectional WebSocket connection was critical for operational efficiency. When the Central Office approves or rejects a report, the Branch Manager receives instant feedback to correct issues, eliminating the 24-48 hour lag inherent in email-based workflows.
 

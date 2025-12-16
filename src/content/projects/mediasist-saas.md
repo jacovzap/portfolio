@@ -16,11 +16,11 @@ role: "Founding Engineer & Technical Architect"
 
 architecture:
   description: |
-    I architected Mediasist with a **Backend-First** philosophy, anticipating future expansion into mobile apps and AI agents. The current operational model utilizes a "human-in-the-loop" approach where virtual assistants manage complex coordination, but the underlying technology was built for full automation from day one.
+    Mediasist was architected with a **Backend-First** philosophy, anticipating future expansion into mobile apps and AI agents. The current operational model utilizes a "human-in-the-loop" approach where virtual assistants manage complex coordination, but the underlying technology was built for full automation from day one.
 
     The backend is built on **NestJS**, providing a strictly typed, modular architecture that ensures the API is robust enough to serve the current Next.js web client and future mobile applications simultaneously. The frontend uses Next.js for server-side rendering and optimized SEO for doctor discovery.
 
-    To solve the endemic "no-show" problem, I implemented a robust **Event-Driven Notification System** using AWS SQS (Simple Queue Service) and SNS. This system handles appointment reminders asynchronously: when an appointment is created, an event is published to SQS with calculated trigger times. Lambda consumers process these delayed messages and send multi-channel notifications (Email, SMS, WhatsApp) via SNS.
+    To solve the endemic "no-show" problem, the platform features a robust **Event-Driven Notification System** built on AWS SQS and SNS. This system handles appointment reminders asynchronously: when an appointment is created, an event is published to SQS with calculated trigger times. Lambda consumers process these delayed messages and send multi-channel notifications (Email, SMS, WhatsApp) via SNS.
 
     **Architectural Vision**: The data structures and API endpoints are explicitly designed to integrate with LLMs for automated negotiation and scheduling. The current human operators validate the system's logic, and their actions train the future AI layer. Multi-tenancy is implemented at the database level with strict row-level security policies, ensuring each medical practice's data is logically isolated.
 
@@ -56,6 +56,7 @@ metrics:
     label: "Avg Query Latency"
 
 screenshots:
-  - "/projects/mediasist/landing.png"
-  - "/projects/mediasist/dashboard.png"
+  - "/projects/mediasist-saas/calendar-scheduling.png"
+  - "/projects/mediasist-saas/appointment-dashboard.png"
+  - "/projects/mediasist-saas/patient-booking.png"
 ---

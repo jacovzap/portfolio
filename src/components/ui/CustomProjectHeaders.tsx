@@ -163,7 +163,7 @@ export const HeaderMedicalCalendar = () => {
             animate={{
               backgroundColor:
                 i % 3 === 0
-                  ? ["#27272a60", "#4338ca40", "#27272a60"]
+                  ? ["#27272a60", "#c026d340", "#27272a60"]
                   : "#27272a60",
             }}
             transition={{
@@ -185,7 +185,7 @@ export const HeaderMedicalCalendar = () => {
           repeat: Infinity,
         }}
       >
-        <div className="w-2 h-2 bg-indigo-400 rounded-full shadow-[0_0_6px_rgba(129,140,248,0.6)]" />
+        <div className="w-2 h-2 bg-fuchsia-400 rounded-full shadow-[0_0_6px_rgba(232,121,249,0.6)]" />
       </motion.div>
 
       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-xs font-mono text-zinc-600 uppercase tracking-widest">

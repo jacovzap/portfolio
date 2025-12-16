@@ -16,11 +16,11 @@ role: "Solo Full-Stack Developer & Systems Designer"
 
 architecture:
   description: |
-    I conducted on-site requirement gathering with industry associations to understand unique workflows, then built a tailored ERP using Express and PostgreSQL for robust relational data management, with a React frontend optimized for low-bandwidth environments.
+    On-site requirement gathering with industry associations revealed unique workflows that shaped the system design. The platform was built using Express and PostgreSQL for robust relational data management, with a React frontend optimized for low-bandwidth environments.
 
     The system addresses critical gaps: a **Piece-Rate Labor Module** designed specifically for calculating wages based on "products delivered" rather than hours worked (a local industry standard), support for deferred payments and partial product delivery in the sales module, and a sophisticated **Cost Accounting Engine** that aggregates utilities (water, electricity) and raw material costs to provide producers with exact "Cost per Unit."
 
-    **Deployment Strategy Shift**: Initially designed for cloud deployment, regulatory requirements mandated **On-Premise hosting** to comply with Bolivia's data protection laws. I configured and deployed the application on government-managed servers, ensuring all data remained within national borders while maintaining secure remote access for producers.
+    **Deployment Strategy Shift**: Initially designed for cloud deployment, regulatory requirements mandated **On-Premise hosting** to comply with Bolivia's data protection laws. The application was configured and deployed to government-managed servers, ensuring all data remained within national borders while maintaining secure remote access for producers.
 
     **Trade-off Accepted**: On-premise deployment increased maintenance complexity and limited automatic scaling, but it was non-negotiable for regulatory compliance and government partnership viability.
 
