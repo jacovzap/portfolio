@@ -58,4 +58,5 @@ metrics:
 screenshots:
   - "/projects/financial-reconciliation/dashboard.png"
   - "/projects/financial-reconciliation/approval-flow.png"
+  - "/projects/financial-reconciliation/document-upload.png"
 ---

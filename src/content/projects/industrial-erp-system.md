@@ -56,4 +56,5 @@ metrics:
 screenshots:
   - "/projects/industrial-erp/dashboard.png"
   - "/projects/industrial-erp/cost-analysis.png"
+  - "/projects/industrial-erp/production-tracking.png"
 ---

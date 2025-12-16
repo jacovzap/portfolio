@@ -5,6 +5,7 @@ import { BackgroundBeams } from "../../components/ui/BackgroundBeams";
 import { ContextCard, MetricCard } from "../../components/ui/ProjectCards";
 import { ChallengeAccordion } from "../../components/ui/ChallengeAccordion";
 import { TechChips } from "../../components/ui/TechChips";
+import { ImageGallery } from "../../components/ui/ImageLightbox";
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
@@ -176,21 +177,16 @@ const {
       screenshots && screenshots.length > 0 && (
         <section class="max-w-6xl mx-auto px-4 md:px-8 py-16 relative z-10">
           <div class="mb-10 text-center">
-            <h2 class="text-3xl font-bold text-white mb-3">Visual Evidence</h2>
+            <h2 class="text-3xl font-bold text-white mb-3">
+              Interface Showcase
+            </h2>
             <div class="h-1 w-20 bg-blue-500 rounded-full mx-auto" />
+            <p class="mt-4 text-zinc-400 max-w-3xl mx-auto">
+              Click any image to view in full size
+            </p>
           </div>
 
-          <div class="grid md:grid-cols-2 gap-6">
-            {screenshots.map((screenshot: string) => (
-              <div class="overflow-hidden rounded-lg border border-zinc-800">
-                <img
-                  src={screenshot}
-                  alt="Project screenshot"
-                  class="w-full h-auto"
-                />
-              </div>
-            ))}
-          </div>
+          <ImageGallery images={screenshots} client:visible />
         </section>
       )
     }
