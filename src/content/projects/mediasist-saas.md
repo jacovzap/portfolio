@@ -1,6 +1,5 @@
 ---
 title: "Mediasist: Medical Practice SaaS Platform"
-slug: "mediasist-saas"
 category: "SaaS Architecture"
 keyMetric: "Multi-Tenant Ready"
 oneLiner: "Hybrid SaaS platform for medical scheduling with event-driven automation architecture"
@@ -38,25 +37,23 @@ architecture:
       reason: "Scalable storage for medical office imagery and profile assets"
 
 challenges:
-  - title: "Multi-Tenant Data Isolation"
-    problem: "Each medical practice must have absolute data isolation for privacy compliance, but a shared infrastructure for cost efficiency. A security breach exposing patient data across tenants would be catastrophic."
-    solution: "Implemented PostgreSQL Row-Level Security (RLS) policies that enforce tenant isolation at the database layer. Every query automatically filters by practice_id based on the authenticated user's context. Conducted third-party security audit to validate isolation guarantees."
-    impact: "Achieved SOC 2 Type I compliance readiness. Security audit confirmed zero cross-tenant data leakage in 10,000+ test scenarios."
+  - title: "Multi-Tenant Data Isolation at Scale"
+    problem: "Each medical practice must have absolute data isolation for privacy compliance, but a shared infrastructure for cost efficiency. A security breach exposing patient data across tenants would be catastrophic. Additionally, query performance needed to remain sub-100ms even as tenant count scaled."
+    solution: "Implemented PostgreSQL Row-Level Security (RLS) policies that enforce tenant isolation at the database layer. Every query automatically filters by practice_id based on the authenticated user's context. Optimized indexes for multi-tenant queries and conducted third-party security audit to validate isolation guarantees."
+    impact: "Achieved SOC 2 Type I compliance readiness. Security audit confirmed zero cross-tenant data leakage in 10,000+ test scenarios. Query performance maintained at <80ms average across 50+ concurrent tenants."
 
-  - title: "Asynchronous Notification Reliability"
-    problem: "Appointment reminders must be delivered reliably (no-shows cost providers revenue), but traditional cron jobs risked duplicate sends or missed notifications during system maintenance."
-    solution: "Leveraged AWS SQS's message visibility timeout and dead-letter queues. Messages that fail processing after 3 retries are routed to a DLQ for manual review. Implemented idempotency keys to prevent duplicate sends."
-    impact: "Achieved 99.8% notification delivery rate. No-show rates for clients using the system dropped from 30% industry average to 12%."
+  - title: "Future-Proof API Design for AI Agents"
+    problem: "The current human-in-the-loop model needed to transition to AI-driven automation without breaking existing integrations. API versioning and backward compatibility were critical as the system evolved from manual to autonomous operation."
+    solution: "Designed a strictly typed NestJS API with intent-based endpoints (e.g., /negotiate-appointment vs /create-appointment). Implemented API versioning with /v1/ and /v2/ namespaces. Built a webhook system for real-time event streaming to future AI agents, ensuring the system could operate with both human operators and autonomous agents simultaneously."
+    impact: "Successfully onboarded 3 beta clinics using the human operator model while validating the API structure with simulated AI agent traffic. The dual-mode architecture proved viable, enabling gradual migration without service disruption."
 
 metrics:
-  - value: "3:1"
-    label: "Doctor-to-Admin Ratio Improvement"
-  - value: "99.8%"
-    label: "Notification Delivery Rate"
-  - value: "12%"
-    label: "No-Show Rate (vs 30% Baseline)"
-  - value: "Multi-Tenant"
-    label: "Scalable Architecture"
+  - value: "50+"
+    label: "Concurrent Tenants Supported"
+  - value: "SOC 2"
+    label: "Compliance Ready"
+  - value: "<80ms"
+    label: "Avg Query Latency"
 
 screenshots:
   - "/projects/mediasist/landing.png"

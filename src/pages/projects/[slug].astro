@@ -4,7 +4,7 @@ import Layout from "../../layouts/Layout.astro";
 import { BackgroundBeams } from "../../components/ui/BackgroundBeams";
 import { ContextCard, MetricCard } from "../../components/ui/ProjectCards";
 import { ChallengeAccordion } from "../../components/ui/ChallengeAccordion";
-import { TechStackTable } from "../../components/ui/TechStackTable";
+import { TechChips } from "../../components/ui/TechChips";
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
@@ -17,7 +17,6 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const {
   title,
-  slug,
   category,
   keyMetric,
   oneLiner,
@@ -33,7 +32,6 @@ const {
 
 <Layout title={`${title} | Jacobo Covarrubias`}>
   <main class="min-h-screen bg-black antialiased relative overflow-hidden">
-    <!-- Hero Section (Minimalista) -->
     <section
       class="relative w-full py-20 md:py-32 flex flex-col items-center justify-center min-h-[50vh]"
     >
@@ -41,21 +39,25 @@ const {
       <div
         class="relative z-10 px-4 md:px-6 max-w-4xl mx-auto w-full text-center"
       >
-        <!-- Category Tag -->
-        <div
-          class="mb-6 inline-flex items-center rounded-full bg-blue-500/10 border border-blue-500/20 px-4 py-1.5 text-sm font-medium text-blue-300"
-        >
-          {category}
+        <div class="flex items-center justify-center gap-3 mb-6 flex-wrap">
+          <div
+            class="inline-flex items-center rounded-full bg-blue-500/10 border border-blue-500/20 px-4 py-1.5 text-sm font-medium text-blue-300"
+          >
+            {category}
+          </div>
+          <div
+            class="inline-flex items-center rounded-full bg-zinc-800/50 border border-zinc-700 px-4 py-1.5 text-sm font-medium text-zinc-400"
+          >
+            {role}
+          </div>
         </div>
 
-        <!-- Title -->
         <h1
           class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6"
         >
           {title}
         </h1>
 
-        <!-- Key Metric Badge -->
         <div
           class="inline-flex items-center gap-2 rounded-full border border-zinc-700 bg-zinc-900/50 px-6 py-3 text-lg font-semibold text-white backdrop-blur-sm"
         >
@@ -63,87 +65,86 @@ const {
           {keyMetric}
         </div>
 
-        <!-- One-liner -->
         <p class="mt-6 text-lg text-zinc-400 max-w-2xl mx-auto">
           {oneLiner}
         </p>
+
+        <div class="mt-8">
+          <TechChips technologies={architecture.technologies} client:visible />
+        </div>
       </div>
     </section>
 
-    <!-- Business Context Section (NEW) -->
     <section class="max-w-6xl mx-auto px-4 md:px-8 py-16 relative z-10">
       <div class="mb-10 text-center">
-        <h2 class="text-3xl font-bold text-white mb-3">Context & Impact</h2>
+        <h2 class="text-3xl font-bold text-white mb-3">Business Context</h2>
         <div class="h-1 w-20 bg-blue-500 rounded-full mx-auto"></div>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-6">
-        <ContextCard title="Business Problem" client:visible>
+      <div class="grid md:grid-cols-2 gap-6">
+        <ContextCard title="The Problem" client:visible>
           <p>{businessProblem}</p>
         </ContextCard>
 
-        <ContextCard title="Constraints" client:visible>
+        <ContextCard title="Constraints & Requirements" client:visible>
           <ul class="space-y-2">
             {
               constraints.map((constraint) => (
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-400 mt-1">▹</span>
+                <li class="flex items-center gap-2">
+                  <span class="text-blue-400 flex-shrink-0">▹</span>
                   <span>{constraint}</span>
                 </li>
               ))
             }
           </ul>
         </ContextCard>
-
-        <ContextCard title="Your Role" client:visible>
-          <p class="font-medium text-blue-300">{role}</p>
-        </ContextCard>
       </div>
     </section>
 
-    <!-- System Architecture Section -->
     <section class="max-w-6xl mx-auto px-4 md:px-8 py-16 relative z-10">
-      <div class="mb-10">
+      <div class="mb-10 text-center">
         <h2 class="text-3xl font-bold text-white mb-3">System Architecture</h2>
-        <div class="h-1 w-20 bg-indigo-500 rounded-full"></div>
+        <div class="h-1 w-20 bg-blue-500 rounded-full mx-auto"></div>
       </div>
 
-      <!-- Architecture Description -->
       <div
         class="mb-8 rounded-lg border border-zinc-800 bg-zinc-900/50 p-6 md:p-8 backdrop-blur-sm"
       >
         <div class="prose prose-invert prose-zinc max-w-none">
           {
             architecture.description.split("\n\n").map((paragraph: string) => {
+              const processedParagraph = paragraph.replace(
+                /\*\*(.*?)\*\*/g,
+                '<strong class="font-semibold text-white">$1</strong>'
+              );
+
               if (paragraph.trim().startsWith("**")) {
                 return (
-                  <p class="text-base leading-relaxed text-zinc-300 font-semibold border-l-2 border-blue-500 pl-4 my-4">
-                    {paragraph.replace(/\*\*/g, "")}
-                  </p>
+                  <p
+                    class="text-base leading-relaxed text-zinc-300 border-l-2 border-blue-500 pl-4 my-4"
+                    set:html={processedParagraph}
+                  />
                 );
               }
               return (
-                <p class="text-base leading-relaxed text-zinc-300 mb-4">
-                  {paragraph}
-                </p>
+                <p
+                  class="text-base leading-relaxed text-zinc-300 mb-4"
+                  set:html={processedParagraph}
+                />
               );
             })
           }
         </div>
       </div>
-
-      <!-- Tech Stack Table -->
-      <TechStackTable technologies={architecture.technologies} client:visible />
     </section>
 
-    <!-- Engineering Challenges Section -->
     <section class="max-w-6xl mx-auto px-4 md:px-8 py-16 relative z-10">
-      <div class="mb-10">
+      <div class="mb-10 text-center">
         <h2 class="text-3xl font-bold text-white mb-3">
           Engineering Challenges
         </h2>
-        <div class="h-1 w-20 bg-purple-500 rounded-full"></div>
-        <p class="mt-4 text-zinc-400 max-w-3xl">
+        <div class="h-1 w-20 bg-blue-500 rounded-full mx-auto"></div>
+        <p class="mt-4 text-zinc-400 max-w-3xl mx-auto">
           Deep-dive into the technical obstacles solved and the architectural
           decisions that mattered.
         </p>
@@ -152,14 +153,13 @@ const {
       <ChallengeAccordion challenges={challenges} client:visible />
     </section>
 
-    <!-- Results & Metrics Section -->
     <section class="max-w-6xl mx-auto px-4 md:px-8 py-16 relative z-10">
       <div class="mb-10 text-center">
         <h2 class="text-3xl font-bold text-white mb-3">Results & Impact</h2>
-        <div class="h-1 w-20 bg-green-500 rounded-full mx-auto"></div>
+        <div class="h-1 w-20 bg-blue-500 rounded-full mx-auto"></div>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
         {
           metrics.map((metric) => (
             <MetricCard
@@ -172,13 +172,12 @@ const {
       </div>
     </section>
 
-    <!-- Screenshots Section (If available) -->
     {
       screenshots && screenshots.length > 0 && (
         <section class="max-w-6xl mx-auto px-4 md:px-8 py-16 relative z-10">
-          <div class="mb-10">
+          <div class="mb-10 text-center">
             <h2 class="text-3xl font-bold text-white mb-3">Visual Evidence</h2>
-            <div class="h-1 w-20 bg-blue-500 rounded-full" />
+            <div class="h-1 w-20 bg-blue-500 rounded-full mx-auto" />
           </div>
 
           <div class="grid md:grid-cols-2 gap-6">
@@ -196,7 +195,6 @@ const {
       )
     }
 
-    <!-- Navigation Footer -->
     <footer class="border-t border-zinc-900 mt-20 py-12 bg-zinc-950">
       <div
         class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-sm"

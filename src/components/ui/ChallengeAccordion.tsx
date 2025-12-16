@@ -62,7 +62,7 @@ export const ChallengeAccordion = ({
               >
                 <div className="space-y-4 border-t border-zinc-800 p-5">
                   <div>
-                    <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-red-400">
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-zinc-400">
                       Problem
                     </p>
                     <p className="text-sm leading-relaxed text-zinc-300">
@@ -71,7 +71,7 @@ export const ChallengeAccordion = ({
                   </div>
 
                   <div>
-                    <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-blue-400">
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-zinc-400">
                       Solution
                     </p>
                     <p className="text-sm leading-relaxed text-zinc-300">
@@ -80,7 +80,7 @@ export const ChallengeAccordion = ({
                   </div>
 
                   <div>
-                    <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-green-400">
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-zinc-400">
                       Impact
                     </p>
                     <p className="text-sm leading-relaxed text-zinc-300">

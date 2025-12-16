@@ -1,6 +1,5 @@
 ---
 title: "High-Scale Event Notification Engine"
-slug: "event-notification-engine"
 category: "Event-Driven Architecture"
 keyMetric: "99.9% Reliability"
 oneLiner: "Precision notification delivery for 30k+ daily events using serverless architecture"
@@ -53,6 +52,4 @@ metrics:
     label: "Delivery Reliability"
   - value: "10min"
     label: "Precision Window"
-  - value: "60%"
-    label: "Cost Reduction vs Polling"
 ---

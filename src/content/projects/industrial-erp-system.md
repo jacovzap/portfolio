@@ -1,6 +1,5 @@
 ---
 title: "Industrial Cost Accounting & Resource Management Platform"
-slug: "industrial-erp-system"
 category: "On-Premise Systems"
 keyMetric: "30% Efficiency Gain"
 oneLiner: "Specialized ERP for artisan leather producers with government-mandated data sovereignty"

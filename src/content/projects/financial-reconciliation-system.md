@@ -1,6 +1,5 @@
 ---
 title: "Distributed Financial Reconciliation System"
-slug: "financial-reconciliation-system"
 category: "Real-Time Systems"
 keyMetric: "20 Branches Synchronized"
 oneLiner: "Real-time financial operations platform eliminating revenue leakage for national retail chain"

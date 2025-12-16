@@ -105,11 +105,25 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
                     {item.category}
                   </span>
                 </div>
-                <img
-                  src={`https://cdn.simpleicons.org/${item.iconSlug}`}
-                  alt={`${item.name} icon`}
-                  className="h-10 w-10 flex-shrink-0"
-                />
+                {["AWS", "S3", "SNS/SQS"].includes(item.name) ? (
+                  <img
+                    src={`/icons/color/${
+                      item.name === "SNS/SQS"
+                        ? "sns"
+                        : item.name === "S3"
+                          ? "s3"
+                          : "aws"
+                    }.svg`}
+                    alt={`${item.name} icon`}
+                    className="h-10 w-10 flex-shrink-0"
+                  />
+                ) : (
+                  <img
+                    src={`https://cdn.simpleicons.org/${item.iconSlug}`}
+                    alt={`${item.name} icon`}
+                    className="h-10 w-10 flex-shrink-0"
+                  />
+                )}
               </div>
             </blockquote>
           </li>
