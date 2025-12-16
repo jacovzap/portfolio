@@ -18,46 +18,40 @@ const projects = [
     ),
     icon: <IconServer className="h-4 w-4 text-neutral-300" />,
     className: "md:col-span-2",
+    slug: "event-notification-engine",
   },
   {
-    title: "Financial Real-Time Sync",
+    title: "Distributed Financial Reconciliation",
     description:
-      "Reduced data latency by 50% across 20+ branches using WebSockets and Kubernetes orchestration.",
+      "Real-time financial operations platform eliminating revenue leakage for national retail chain with 20+ branches.",
     header: (
       <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-lg bg-gradient-to-br from-blue-500 via-cyan-500 to-teal-500 opacity-80"></div>
     ),
     icon: <IconCloud className="h-4 w-4 text-neutral-300" />,
     className: "md:col-span-1",
+    slug: "financial-reconciliation-system",
   },
   {
-    title: "ACSYS Resource Planning",
+    title: "Industrial ERP & Cost Accounting",
     description:
-      "Fullstack ERP solution for artisan producers with modern React UI and containerized deployment.",
+      "Specialized ERP for artisan leather producers with government-mandated on-premise deployment and data sovereignty.",
     header: (
       <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-lg bg-gradient-to-br from-violet-500 via-purple-500 to-pink-500 opacity-80"></div>
     ),
     icon: <IconBrandReact className="h-4 w-4 text-neutral-300" />,
     className: "md:col-span-1",
+    slug: "industrial-erp-system",
   },
   {
-    title: "High-Performance Media Streaming",
+    title: "Mediasist: Medical Practice SaaS",
     description:
-      "Optimized Next.js streaming platform for Latin American market with SSR/SSG architecture. Reduced bandwidth by 40% while maintaining UX quality and handling 50k+ monthly active users.",
-    header: (
-      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-lg bg-gradient-to-br from-green-500 via-emerald-500 to-lime-500 opacity-80"></div>
-    ),
-    icon: <IconBrandNextjs className="h-4 w-4 text-neutral-300" />,
-    className: "md:col-span-1",
-  },
-  {
-    title: "Medical Practice SaaS Management System",
-    description:
-      "Production-ready SaaS solution for medical appointment scheduling and patient management. Scalable full-stack architecture currently in pre-MVP phase with imminent market launch.",
+      "Hybrid SaaS platform for medical scheduling with event-driven architecture designed for future AI agent integration.",
     header: (
       <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-lg bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 opacity-80"></div>
     ),
     icon: <IconHeartbeat className="h-4 w-4 text-neutral-300" />,
-    className: "md:col-span-1",
+    className: "md:col-span-2",
+    slug: "mediasist-saas",
   },
 ];
 
@@ -86,6 +80,7 @@ export const FeaturedProjects: React.FC = () => {
               header={item.header}
               icon={item.icon}
               className={item.className}
+              href={`/projects/${item.slug}`}
             />
           ))}
         </BentoGrid>

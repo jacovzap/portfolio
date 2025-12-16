@@ -10,7 +10,7 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({
   name = "Jacobo Covarrubias",
-  title = "Fullstack Engineer & Cloud Architect",
+  title = "Fullstack Cloud Engineer",
   description = "Building scalable cloud-native applications with TypeScript, Node.js, NestJS, AWS, and React. Specialized in microservices architecture and high-performance backend systems.",
 }) => {
   return (

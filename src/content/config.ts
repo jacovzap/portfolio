@@ -1,58 +1,52 @@
 import { defineCollection, z } from "astro:content";
 
-const projectsCollection = defineCollection({
+const projects = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
-    description: z.string(),
-    publishDate: z.coerce.date(),
+    slug: z.string(),
+    category: z.string(),
+    keyMetric: z.string(),
+    oneLiner: z.string(),
 
-    category: z.enum([
-      "fullstack",
-      "backend",
-      "cloud-architecture",
-      "devops",
-      "microservices",
-    ]),
-    tags: z.array(z.string()),
-
-    heroImage: z.string().optional(),
-    heroVideo: z.string().optional(),
-
-    client: z.string().optional(),
-    duration: z.string().optional(),
-    teamSize: z.number().optional(),
+    // Business Context
+    businessProblem: z.string(),
+    constraints: z.array(z.string()),
     role: z.string(),
 
-    stack: z.object({
-      frontend: z.array(z.string()).optional(),
-      backend: z.array(z.string()),
-      infrastructure: z.array(z.string()),
-      databases: z.array(z.string()).optional(),
-      tools: z.array(z.string()).optional(),
+    // Technical Architecture
+    architecture: z.object({
+      description: z.string(),
+      diagramPath: z.string().optional(),
+      technologies: z.array(
+        z.object({
+          name: z.string(),
+          reason: z.string(),
+        })
+      ),
     }),
 
-    metrics: z
-      .object({
-        performance: z.string().optional(),
-        scalability: z.string().optional(),
-        cost: z.string().optional(),
-        reliability: z.string().optional(),
+    // Engineering Challenges
+    challenges: z.array(
+      z.object({
+        title: z.string(),
+        problem: z.string(),
+        solution: z.string(),
+        impact: z.string(),
       })
-      .optional(),
+    ),
 
-    architectureDiagram: z.string().optional(),
-    mockups: z.array(z.string()).optional(),
+    // Results
+    metrics: z.array(
+      z.object({
+        value: z.string(),
+        label: z.string(),
+      })
+    ),
 
-    featured: z.boolean().default(false),
-    order: z.number().default(999),
-    status: z.enum(["draft", "published"]).default("published"),
-
-    liveUrl: z.string().url().optional(),
-    caseStudyPdf: z.string().optional(),
+    // Visual Assets
+    screenshots: z.array(z.string()).optional(),
   }),
 });
 
-export const collections = {
-  projects: projectsCollection,
-};
+export const collections = { projects };

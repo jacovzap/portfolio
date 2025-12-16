@@ -77,7 +77,7 @@ export const Contact: React.FC = () => {
           </a>
         </div>
 
-        <div className="mt-12 md:mt-16 border-t border-zinc-800 pt-6 md:pt-8 pb-4">
+        <div className="mt-12 md:mt-16 mb-8 border-t border-zinc-800 pt-6 md:pt-8 pb-4">
           <p className="text-sm text-zinc-500">
             © 2025 Jacobo Covarrubias Zapata. Built with Astro, React, and
             Tailwind CSS.

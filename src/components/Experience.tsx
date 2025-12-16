@@ -4,7 +4,7 @@ import { TracingBeam } from "./ui/TracingBeam";
 const experiences = [
   {
     role: "Software Engineer",
-    company: "SOLO LLC",
+    company: "SOLO LLC (Via Assuresoft)",
     period: "October 2023 - Present",
     location: "Remote (USA Client)",
     type: "Senior · Cloud Architecture",
