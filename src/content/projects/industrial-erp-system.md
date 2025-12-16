@@ -48,8 +48,6 @@ challenges:
 metrics:
   - value: "30%"
     label: "Efficiency Improvement"
-  - value: "100%"
-    label: "Data Sovereignty Compliance"
   - value: "85%"
     label: "User Adoption Rate"
   - value: "15%"

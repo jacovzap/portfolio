@@ -54,8 +54,6 @@ metrics:
     label: "Latency Reduction"
   - value: "100%"
     label: "Digital Audit Coverage"
-  - value: "Real-time"
-    label: "Approval Notifications"
 
 screenshots:
   - "/projects/financial-reconciliation/dashboard.png"
