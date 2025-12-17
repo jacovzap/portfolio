@@ -6,6 +6,8 @@ Personal portfolio showcasing fullstack cloud engineering expertise. Built with 
 [![Astro](https://img.shields.io/badge/Astro-5.16-FF5D01?style=flat&logo=astro)](https://astro.build)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org)
 
+<img width="1888" height="925" alt="image" src="https://github.com/user-attachments/assets/74f6f614-08e9-4e12-a03c-a9c5d9099d06" />
+
 ---
 
 ## ✨ Features
