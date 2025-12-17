@@ -1,149 +1,141 @@
-# Portfolio - Jacobo Covarrubias Zapata
+# ⚡ Jacobo Covarrubias - Portfolio
 
-High-performance portfolio showcasing full-stack engineering expertise and cloud architecture projects. Built with Astro and deployed on Cloudflare Pages.
+Personal portfolio showcasing fullstack cloud engineering expertise. Built with Astro, React, and deployed on Cloudflare Pages.
 
+[![Live Site](https://img.shields.io/badge/Live-jacovzap.dev-blue?style=flat&logo=cloudflare)](https://jacovzap.dev)
 [![Astro](https://img.shields.io/badge/Astro-5.16-FF5D01?style=flat&logo=astro)](https://astro.build)
-[![React](https://img.shields.io/badge/React-18.3-61DAFB?style=flat&logo=react)](https://react.dev)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org)
 
-## Features
+---
 
-- Astro Islands Architecture for optimal performance
-- Aceternity UI components with Framer Motion animations
-- Mobile-first responsive design
-- Dark theme with blue/indigo/purple gradients
-- SEO optimized with perfect Lighthouse scores
-- Zero-JS by default with partial hydration
+## ✨ Features
 
-## Tech Stack
+- **Astro Islands** - Zero JS by default, hydrate only what's needed
+- **Interactive Tech Stack** - Draggable infinite carousel with smooth resume animation
+- **Case Study Pages** - Markdown-driven project pages with custom components
+- **Image Lightbox** - Click-to-zoom gallery with gestures & keyboard navigation
+- **Dark Theme** - Sleek dark UI with blue/indigo accent gradients
+- **Responsive** - Mobile-first design across all breakpoints
 
-### Core
+## 🛠 Tech Stack
 
-- **Astro 5.x** - Static site generator
-- **React 18** - UI library
-- **TypeScript** - Type safety
-- **Tailwind CSS** - Styling
+| Category       | Technologies                                |
+| -------------- | ------------------------------------------- |
+| **Framework**  | Astro 5, React 18                           |
+| **Language**   | TypeScript                                  |
+| **Styling**    | Tailwind CSS, Framer Motion                 |
+| **Content**    | Astro Content Collections (Markdown)        |
+| **Deployment** | Cloudflare Pages (Edge)                     |
+| **Icons**      | Simple Icons CDN, Tabler Icons, Custom SVGs |
 
-### UI & Animations
-
-- **Aceternity UI** - Component library
-- **Framer Motion** - Animations
-- **Simple Icons CDN** - Brand icons
-
-### Deployment
-
-- **Cloudflare Pages** - Edge deployment
-
-## Project Structure
+## 📁 Project Structure
 
 ```
 portfolio/
 ├── public/
-│   └── Jacobo_Covarrubias.pdf
+│   ├── favicon.svg          # Twemoji lightning bolt
+│   ├── Jacobo_Covarrubias.pdf
+│   ├── icons/               # Custom AWS/S3/SNS icons
+│   ├── images/              # Static images
+│   └── projects/            # Project screenshots
 ├── src/
 │   ├── components/
-│   │   ├── ui/
-│   │   │   ├── BackgroundBeams.tsx
-│   │   │   ├── BentoGrid.tsx
+│   │   ├── ui/              # Reusable UI components
 │   │   │   ├── InfiniteMovingCards.tsx
-│   │   │   ├── Spotlight.tsx
-│   │   │   └── TracingBeam.tsx
-│   │   ├── Contact.tsx
-│   │   ├── Experience.tsx
-│   │   ├── FeaturedProjects.tsx
+│   │   │   ├── ImageLightbox.tsx
+│   │   │   ├── ChallengeAccordion.tsx
+│   │   │   ├── TechChips.tsx
+│   │   │   └── ...
 │   │   ├── Hero.tsx
-│   │   └── TechStack.tsx
+│   │   ├── TechStack.tsx
+│   │   ├── FeaturedProjects.tsx
+│   │   ├── Experience.tsx
+│   │   └── Contact.tsx
+│   ├── content/
+│   │   ├── config.ts        # Content collection schema
+│   │   └── projects/        # Case study markdown files
 │   ├── layouts/
 │   │   └── Layout.astro
 │   ├── pages/
-│   │   └── index.astro
-│   ├── styles/
-│   │   └── global.css
-│   └── lib/
-│       └── utils.ts
-├── astro.config.mjs
-├── tailwind.config.mjs
-└── tsconfig.json
+│   │   ├── index.astro
+│   │   └── projects/[slug].astro
+│   └── styles/
+│       └── global.css
+└── astro.config.mjs
 ```
 
-## Sections
+## 📄 Sections
 
-### Hero
+### Home Page
 
-Animated spotlight effects, gradient text, tech stack badges, CTAs
+- **Hero** - Name, title, description with spotlight effects
+- **Tech Stack** - Interactive carousel (drag to scroll, auto-resumes)
+- **Featured Projects** - Bento grid linking to case studies
+- **Experience** - Animated timeline of professional journey
+- **Contact** - Download CV & email CTAs
 
-### Trusted Tech Stack
+### Case Studies
 
-Infinite scrolling carousel with CDN-based colored icons
-Technologies: AWS, TypeScript, Node.js, NestJS, Docker, Kubernetes, React, PostgreSQL, S3, SQS
+Each project has a dedicated page with:
 
-### Featured Projects
+- Custom headers with project metadata
+- Challenge/solution accordions
+- Tech stack breakdown
+- Screenshot gallery with lightbox
+- Architecture insights
 
-Bento Grid layout with 5 case studies:
+**Current Projects:**
 
-- High-Scale Event Notification Engine (AWS SNS/SQS)
-- Financial Real-Time Sync (WebSockets, Kubernetes)
-- ACSYS Resource Planning (Full-stack ERP)
-- High-Performance Media Streaming (Next.js)
-- Medical Practice SaaS (Pre-MVP)
+- Event Notification Engine (AWS SNS/SQS)
+- Financial Reconciliation System (WebSockets, K8s)
+- Industrial ERP System (Full-stack)
+- MediAsist SaaS (Healthcare Pre-MVP)
 
-### Professional Journey
-
-Animated timeline with 4 roles and achievement-focused descriptions
-
-### Contact
-
-Download CV & Email CTAs with BackgroundBeams animation
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18.x or higher
-- npm 9.x or higher
-
-### Installation
+## 🚀 Getting Started
 
 ```bash
+# Clone
 git clone https://github.com/jacovzap/portfolio.git
 cd portfolio
+
+# Install
 npm install
-npm run dev
-```
 
-Development server: `http://localhost:4321`
+# Development
+npm run dev        # http://localhost:4321
 
-### Build
-
-```bash
+# Production
 npm run build
 npm run preview
 ```
 
-## Performance
+## 📦 Deployment
 
-- Lighthouse Score: 100/100
+Configured for **Cloudflare Pages**:
+
+| Setting          | Value           |
+| ---------------- | --------------- |
+| Build command    | `npm run build` |
+| Output directory | `dist`          |
+| Node version     | 18+             |
+
+## 📊 Performance
+
+- Lighthouse: 100/100
 - First Contentful Paint: < 0.5s
-- Time to Interactive: < 1.5s
-- Total Bundle Size: < 100KB
-- 3 interactive components with Islands Architecture
+- Only 5 hydrated components (Islands Architecture)
 
-## Deployment
+---
 
-### Cloudflare Pages Configuration
+## 📬 Contact
 
-- **Build command**: `npm run build`
-- **Build output**: `dist`
-- **Node version**: 18
+**Jacobo Covarrubias Zapata**  
+Fullstack Cloud Developer
 
-## License
+- 📧 [jacobo.covarrubias.zapata@gmail.com](mailto:jacobo.covarrubias.zapata@gmail.com)
+- 💼 [LinkedIn](https://linkedin.com/in/jacovzap)
+- 🌐 [jacovzap.dev](https://jacovzap.dev)
 
-MIT License
+---
 
-## Contact
-
-**Jacobo Covarrubias Zapata**
-
-- Email: jacobo.covarrubias.zapata@gmail.com
-- LinkedIn: [linkedin.com/in/jacovzap](https://linkedin.com/in/jacovzap)
+MIT License © 2024
