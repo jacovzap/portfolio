@@ -16,10 +16,7 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Trigger animation on mount
     setIsVisible(true);
-
-    // Lock body scroll
     document.body.style.overflow = "hidden";
 
     return () => {

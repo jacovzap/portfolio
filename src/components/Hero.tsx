@@ -35,7 +35,7 @@ export const Hero: React.FC<HeroProps> = ({
             transition={{ delay: 0.2, duration: 0.6 }}
             className="mb-4 bg-gradient-to-r from-zinc-400 to-zinc-600 bg-clip-text text-sm font-medium uppercase tracking-widest text-transparent sm:text-base"
           >
-            Portfolio — 2025
+            {" "}
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import { cn } from "../../lib/utils";
 
 interface InfiniteMovingCardsProps {
@@ -18,72 +18,195 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
   speed = "normal",
   className,
 }) => {
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const scrollerRef = React.useRef<HTMLUListElement>(null);
-  const [start, setStart] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const scrollerRef = useRef<HTMLUListElement>(null);
+  const [ready, setReady] = useState(false);
+
+  const positionRef = useRef(0);
+  const isDraggingRef = useRef(false);
+  const isPausedRef = useRef(false);
+  const animationFrameRef = useRef<number | null>(null);
+  const lastTimeRef = useRef<number | null>(null);
+  const resumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const dragStartX = useRef(0);
+  const dragStartPosition = useRef(0);
+
+  const [isDragging, setIsDragging] = useState(false);
+  const getSpeedPxPerSecond = useCallback(() => {
+    if (!scrollerRef.current) return 50;
+    const scrollWidth = scrollerRef.current.scrollWidth / 2;
+    const duration = speed === "fast" ? 20 : speed === "normal" ? 40 : 80;
+    return scrollWidth / duration;
+  }, [speed]);
 
   useEffect(() => {
-    addAnimation();
-  }, []);
-
-  function addAnimation() {
-    if (containerRef.current && scrollerRef.current) {
+    if (scrollerRef.current) {
       const scrollerContent = Array.from(scrollerRef.current.children);
-
       scrollerContent.forEach((item) => {
         const duplicatedItem = item.cloneNode(true);
-        if (scrollerRef.current) {
-          scrollerRef.current.appendChild(duplicatedItem);
-        }
+        scrollerRef.current?.appendChild(duplicatedItem);
       });
-
-      getDirection();
-      getSpeed();
-      setStart(true);
+      setReady(true);
     }
-  }
+  }, []);
 
-  const getDirection = () => {
-    if (containerRef.current) {
-      if (direction === "left") {
-        containerRef.current.style.setProperty(
-          "--animation-direction",
-          "forwards"
-        );
-      } else {
-        containerRef.current.style.setProperty(
-          "--animation-direction",
-          "reverse"
-        );
+  useEffect(() => {
+    if (!ready || !scrollerRef.current) return;
+
+    const animate = (currentTime: number) => {
+      if (!scrollerRef.current) return;
+
+      if (lastTimeRef.current === null) {
+        lastTimeRef.current = currentTime;
+      }
+
+      const deltaTime = (currentTime - lastTimeRef.current) / 1000;
+      lastTimeRef.current = currentTime;
+
+      if (!isDraggingRef.current && !isPausedRef.current) {
+        const speedPx = getSpeedPxPerSecond();
+        const movement =
+          direction === "left" ? -speedPx * deltaTime : speedPx * deltaTime;
+        positionRef.current += movement;
+
+        const halfWidth = scrollerRef.current.scrollWidth / 2;
+        if (direction === "left" && positionRef.current <= -halfWidth) {
+          positionRef.current += halfWidth;
+        } else if (direction === "right" && positionRef.current >= 0) {
+          positionRef.current -= halfWidth;
+        }
+      }
+
+      scrollerRef.current.style.transform = `translateX(${positionRef.current}px)`;
+
+      animationFrameRef.current = requestAnimationFrame(animate);
+    };
+
+    animationFrameRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, [ready, direction, getSpeedPxPerSecond]);
+
+  useEffect(() => {
+    return () => {
+      if (resumeTimeoutRef.current) {
+        clearTimeout(resumeTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const handleDragStart = useCallback((clientX: number) => {
+    isDraggingRef.current = true;
+    setIsDragging(true);
+    dragStartX.current = clientX;
+    dragStartPosition.current = positionRef.current;
+
+    if (resumeTimeoutRef.current) {
+      clearTimeout(resumeTimeoutRef.current);
+      resumeTimeoutRef.current = null;
+    }
+    isPausedRef.current = false;
+  }, []);
+
+  const handleDragMove = useCallback((clientX: number) => {
+    if (!isDraggingRef.current) return;
+
+    const deltaX = clientX - dragStartX.current;
+    positionRef.current = dragStartPosition.current + deltaX;
+  }, []);
+
+  const handleDragEnd = useCallback(() => {
+    if (!isDraggingRef.current) return;
+
+    isDraggingRef.current = false;
+    setIsDragging(false);
+    isPausedRef.current = true;
+
+    if (scrollerRef.current) {
+      const halfWidth = scrollerRef.current.scrollWidth / 2;
+      while (positionRef.current < -halfWidth) {
+        positionRef.current += halfWidth;
+      }
+      while (positionRef.current > 0) {
+        positionRef.current -= halfWidth;
       }
     }
-  };
 
-  const getSpeed = () => {
-    if (containerRef.current) {
-      if (speed === "fast") {
-        containerRef.current.style.setProperty("--animation-duration", "20s");
-      } else if (speed === "normal") {
-        containerRef.current.style.setProperty("--animation-duration", "40s");
-      } else {
-        containerRef.current.style.setProperty("--animation-duration", "80s");
-      }
+    resumeTimeoutRef.current = setTimeout(() => {
+      isPausedRef.current = false;
+      lastTimeRef.current = null;
+    }, 1000);
+  }, []);
+
+  const handleMouseDown = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      handleDragStart(e.clientX);
+    },
+    [handleDragStart]
+  );
+
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent) => {
+      handleDragMove(e.clientX);
+    },
+    [handleDragMove]
+  );
+
+  const handleMouseUp = useCallback(() => {
+    handleDragEnd();
+  }, [handleDragEnd]);
+
+  const handleMouseLeave = useCallback(() => {
+    if (isDraggingRef.current) {
+      handleDragEnd();
     }
-  };
+  }, [handleDragEnd]);
+
+  const handleTouchStart = useCallback(
+    (e: React.TouchEvent) => {
+      handleDragStart(e.touches[0].clientX);
+    },
+    [handleDragStart]
+  );
+
+  const handleTouchMove = useCallback(
+    (e: React.TouchEvent) => {
+      handleDragMove(e.touches[0].clientX);
+    },
+    [handleDragMove]
+  );
+
+  const handleTouchEnd = useCallback(() => {
+    handleDragEnd();
+  }, [handleDragEnd]);
 
   return (
     <div
       ref={containerRef}
       className={cn(
         "scroller relative z-20 max-w-7xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
+        isDragging ? "cursor-grabbing" : "cursor-grab",
         className
       )}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
       <ul
         ref={scrollerRef}
         className={cn(
           "flex min-w-full shrink-0 gap-4 py-4 w-max flex-nowrap",
-          start && "animate-scroll"
+          isDragging && "select-none"
         )}
       >
         {items.map((item, idx) => (
