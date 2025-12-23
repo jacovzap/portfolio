@@ -8,6 +8,11 @@ const techStack = [
     iconSlug: "amazon",
   },
   {
+    name: "NestJS",
+    category: "Framework",
+    iconSlug: "nestjs",
+  },
+  {
     name: "TypeScript",
     category: "Language",
     iconSlug: "typescript",
@@ -16,11 +21,6 @@ const techStack = [
     name: "Node.js",
     category: "Backend Runtime",
     iconSlug: "nodedotjs",
-  },
-  {
-    name: "NestJS",
-    category: "Framework",
-    iconSlug: "nestjs",
   },
   {
     name: "Docker",
@@ -36,6 +36,11 @@ const techStack = [
     name: "PostgreSQL",
     category: "Database",
     iconSlug: "postgresql",
+  },
+  {
+    name: "Next.js",
+    category: "Frontend Framework",
+    iconSlug: "nextdotjs",
   },
   {
     name: "React",
